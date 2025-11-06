@@ -28,12 +28,14 @@ const Hero: React.FC = () => {
   }, [subIndex, index, reverse]);
 
   return (
-  <section
-  id="hero"
-  className="min-h-screen flex flex-col justify-center items-center text-center bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat"
->
-
+    <section
+      id="hero"
+      className="min-h-screen flex flex-col justify-center items-center text-center bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat"
+    >
       <div className="max-w-4xl">
+        <h1 className="text-3xl md:text-4xl text-gray-300 mb-2 animate-fade-in-down">
+          Hi, I'm
+        </h1>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 animate-fade-in-down">
           VIJAYASANKAR
         </h1>
@@ -42,20 +44,38 @@ const Hero: React.FC = () => {
           <span className="animate-pulse">|</span>
         </h2>
         <div className="flex justify-center space-x-6 animate-fade-in">
-          <a href="https://github.com/vijayasankar22" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
+          <a
+            href="https://github.com/vijayasankar22"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125"
+          >
             <GithubIcon />
           </a>
-          <a href="https://linkedin.com/in/vijayasankarp" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
+          <a
+            href="https://linkedin.com/in/vijayasankarp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125"
+          >
             <LinkedinIcon />
           </a>
-          <a href="mailto:vijayasankar2225@gmail.com" className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125">
+          <a
+            href="mailto:vijayasankar2225@gmail.com"
+            className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125"
+          >
             <MailIcon />
           </a>
-         
         </div>
       </div>
       <a href="#about" className="absolute bottom-10 animate-bounce">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#e13b78]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-8 w-8 text-[#e13b78]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </a>
