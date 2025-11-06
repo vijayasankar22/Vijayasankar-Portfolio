@@ -32,13 +32,13 @@ const App: React.FC = () => {
       <div
         className="fixed inset-0 -z-20 bg-center bg-cover bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: `url('/image.jpg')`, // ✅ use /images.jpg (not Public/)
-          filter: 'blur(8px) brightness(0.6)  hue-rotate(0deg)', // 👈 adds blur + reduces opacity
+          backgroundImage: `url('/image.jpg')`, // ✅ Make sure image is inside /public
+          filter: 'blur(8px) brightness(0.6)',
           transform: 'scale(1.1)', // avoids edge gaps due to blur
         }}
       />
 
-      {/* 🌈 Optional soft gradient overlay for cinematic feel */}
+      {/* 🌈 Cinematic gradient overlay */}
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(214,4,74,0.15),rgba(0,0,0,0.85))]" />
 
       {/* 💡 Dynamic glowing gradient following mouse */}
@@ -54,7 +54,11 @@ const App: React.FC = () => {
       <div className="relative z-10 p-8">
         <Header />
         <main className="container mx-auto px-6 md:px-12">
-          <Hero />
+          {/* 👇 Shift Hero section slightly upward */}
+          <section className="-mt-12 md:-mt-20 lg:-mt-34 transition-all duration-500">
+            <Hero />
+          </section>
+
           <About />
           <Skills />
           <Projects />
