@@ -8,10 +8,28 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+// ✨ CSS animations for glow + aurora
+const styles = `
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes auroraFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+`;
+
 const App: React.FC = () => {
   const appRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const styleEl = document.createElement('style');
+    styleEl.textContent = styles;
+    document.head.appendChild(styleEl);
+
     const handleMouseMove = (e: MouseEvent) => {
       if (appRef.current) {
         const { clientX, clientY } = e;
@@ -23,38 +41,77 @@ const App: React.FC = () => {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.head.removeChild(styleEl);
+    };
   }, []);
 
   return (
     <div ref={appRef} className="min-h-screen relative text-gray-200 font-sans overflow-x-hidden">
-      {/* 🖼️ Blurred + darkened background layer */}
+      {/* 🖼️ Background Image Layer */}
       <div
-        className="fixed inset-0 -z-20 bg-center bg-cover bg-no-repeat bg-fixed"
+        className="fixed inset-0 -z-30 bg-center bg-cover bg-no-repeat bg-fixed"
         style={{
-          backgroundImage: `url('/image.jpg')`, // ✅ Make sure image is inside /public
+          backgroundImage: `url('/image.jpg')`,
           filter: 'blur(8px) brightness(0.6)',
-          transform: 'scale(1.1)', // avoids edge gaps due to blur
+          transform: 'scale(1.1)',
         }}
       />
 
-      {/* 🌈 Cinematic gradient overlay */}
-      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(214,4,74,0.15),rgba(0,0,0,0.85))]" />
+      {/* 🌈 Animated Aurora Gradient Background */}
+      <div
+        className="fixed inset-0 -z-20 opacity-60"
+        style={{
+          background:
+            'linear-gradient(120deg, rgba(255,0,102,0.4), rgba(0,204,255,0.4), rgba(255,255,255,0.1))',
+          backgroundSize: '300% 300%',
+          animation: 'auroraFlow 20s ease-in-out infinite',
+          mixBlendMode: 'overlay',
+          filter: 'blur(60px)',
+        }}
+      />
 
-      {/* 💡 Dynamic glowing gradient following mouse */}
+      {/* 🌌 Subtle Radial Dark Overlay */}
+      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(214,4,74,0.1),rgba(0,0,0,0.9))]" />
+
+      {/* 💡 Dynamic Glow Following Mouse */}
       <div
         className="pointer-events-none fixed inset-0 z-0 transition-all duration-300"
         style={{
-          background: `radial-gradient(1000px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(214, 4, 74, 0.3), transparent 40%)`,
+          background: `radial-gradient(1000px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(214,4,74,0.3), transparent 40%)`,
           mixBlendMode: 'screen',
         }}
       />
 
-      {/* 🧠 Main content */}
+      {/* ⚡ Left Lens Flare Glow — Half Inside */}
+      <div
+        className="pointer-events-none fixed top-0 left-[-25%] h-full w-[60%] z-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 100% at right center, rgba(255,0,102,0.55) 0%, rgba(255,0,102,0.25) 40%, transparent 75%)',
+          mixBlendMode: 'screen',
+          filter: 'blur(140px)',
+          animation: 'pulseGlow 6s ease-in-out infinite',
+        }}
+      />
+
+      {/* ⚡ Right Lens Flare Glow — Half Inside */}
+      <div
+        className="pointer-events-none fixed top-0 right-[-25%] h-full w-[60%] z-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 100% at left center, rgba(225, 0, 255, 0.55) 0%, rgba(153, 0, 255, 0.25) 40%, transparent 75%)',
+          mixBlendMode: 'screen',
+          filter: 'blur(140px)',
+          animation: 'pulseGlow 6s ease-in-out infinite',
+        }}
+      />
+
+      {/* 🧠 Main Content */}
       <div className="relative z-10 p-8">
         <Header />
         <main className="container mx-auto px-6 md:px-12">
-          {/* 👇 Shift Hero section slightly upward */}
           <section className="-mt-12 md:-mt-20 lg:-mt-34 transition-all duration-500">
             <Hero />
           </section>
