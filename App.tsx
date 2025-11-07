@@ -8,7 +8,7 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-// ✨ CSS animations for glow + aurora
+// ✨ Animations
 const styles = `
 @keyframes pulseGlow {
   0%, 100% { opacity: 0.6; transform: scale(1); }
@@ -59,7 +59,7 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* 🌈 Animated Aurora Gradient Background */}
+      {/* 🌈 Aurora Gradient Background */}
       <div
         className="fixed inset-0 -z-20 opacity-60"
         style={{
@@ -75,7 +75,7 @@ const App: React.FC = () => {
       {/* 🌌 Subtle Radial Dark Overlay */}
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(214,4,74,0.1),rgba(0,0,0,0.9))]" />
 
-      {/* 💡 Dynamic Glow Following Mouse */}
+      {/* 💡 Dynamic Mouse Glow */}
       <div
         className="pointer-events-none fixed inset-0 z-0 transition-all duration-300"
         style={{
@@ -84,10 +84,12 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* ⚡ Left Lens Flare Glow — Half Inside */}
+      {/* ⚡ Left Lens Flare — only half visible */}
       <div
-        className="pointer-events-none fixed top-0 left-[-25%] h-full w-[60%] z-0"
+        className="pointer-events-none fixed top-0 h-full z-0"
         style={{
+          left: '-40%', // pushed outside
+          width: '50vw',
           background:
             'radial-gradient(ellipse 80% 100% at right center, rgba(255,0,102,0.55) 0%, rgba(255,0,102,0.25) 40%, transparent 75%)',
           mixBlendMode: 'screen',
@@ -96,12 +98,14 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* ⚡ Right Lens Flare Glow — Half Inside */}
+      {/* ⚡ Right Lens Flare — only half visible */}
       <div
-        className="pointer-events-none fixed top-0 right-[-25%] h-full w-[60%] z-0"
+        className="pointer-events-none fixed top-0 h-full z-0"
         style={{
+          right: '-40%', // pushed outside
+          width: '50vw',
           background:
-            'radial-gradient(ellipse 80% 100% at left center, rgba(225, 0, 255, 0.55) 0%, rgba(153, 0, 255, 0.25) 40%, transparent 75%)',
+            'radial-gradient(ellipse 80% 100% at left center, rgba(160,0,255,0.55) 0%, rgba(153, 0, 255, 0.25) 40%, transparent 75%)',
           mixBlendMode: 'screen',
           filter: 'blur(140px)',
           animation: 'pulseGlow 6s ease-in-out infinite',
