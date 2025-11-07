@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+import Particles from 'react-tsparticles';
+import { loadFull } from 'tsparticles';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -25,6 +27,11 @@ const styles = `
 const App: React.FC = () => {
   const appRef = useRef<HTMLDivElement>(null);
 
+  // Initialize tsparticles engine
+  const particlesInit = async (engine: any) => {
+    await loadFull(engine);
+  };
+
   useEffect(() => {
     const styleEl = document.createElement('style');
     styleEl.textContent = styles;
@@ -49,6 +56,52 @@ const App: React.FC = () => {
 
   return (
     <div ref={appRef} className="min-h-screen relative text-gray-200 font-sans overflow-x-hidden">
+
+      {/* 🧊 Animated Particle Background */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        className="fixed inset-0 -z-40"
+        options={{
+          fullScreen: { enable: false },
+          background: { color: { value: 'transparent' } },
+          fpsLimit: 60,
+          particles: {
+            number: { value: 50, density: { enable: true, area: 800 } },
+            color: { value: ['#ff0066', '#00ccff', '#ffffff'] },
+            opacity: { value: 0.6 },
+            size: { value: { min: 1, max: 3 } },
+            move: {
+              enable: true,
+              speed: 0.6,
+              direction: 'none',
+              random: true,
+              straight: false,
+              outModes: { default: 'out' },
+            },
+            links: {
+              enable: true,
+              distance: 150,
+              color: '#ffffff',
+              opacity: 0.2,
+              width: 1,
+            },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: 'repulse' },
+              onClick: { enable: true, mode: 'push' },
+              resize: true,
+            },
+            modes: {
+              repulse: { distance: 100, duration: 0.4 },
+              push: { quantity: 2 },
+            },
+          },
+          detectRetina: true,
+        }}
+      />
+
       {/* 🖼️ Background Image Layer */}
       <div
         className="fixed inset-0 -z-30 bg-center bg-cover bg-no-repeat bg-fixed"
@@ -72,7 +125,7 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* 🌌 Subtle Radial Dark Overlay */}
+      {/* 🌌 Radial Dark Overlay */}
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(214,4,74,0.1),rgba(0,0,0,0.9))]" />
 
       {/* 💡 Dynamic Mouse Glow */}
@@ -84,11 +137,11 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* ⚡ Left Lens Flare — only half visible */}
+      {/* ⚡ Left Lens Flare — Half Visible */}
       <div
         className="pointer-events-none fixed top-0 h-full z-0"
         style={{
-          left: '-40%', // pushed outside
+          left: '-40%',
           width: '50vw',
           background:
             'radial-gradient(ellipse 80% 100% at right center, rgba(255,0,102,0.55) 0%, rgba(255,0,102,0.25) 40%, transparent 75%)',
@@ -98,11 +151,11 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* ⚡ Right Lens Flare — only half visible */}
+      {/* ⚡ Right Lens Flare — Half Visible */}
       <div
         className="pointer-events-none fixed top-0 h-full z-0"
         style={{
-          right: '-40%', // pushed outside
+          right: '-40%',
           width: '50vw',
           background:
             'radial-gradient(ellipse 80% 100% at left center, rgba(160,0,255,0.55) 0%, rgba(153, 0, 255, 0.25) 40%, transparent 75%)',
