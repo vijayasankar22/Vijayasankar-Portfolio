@@ -8,13 +8,46 @@ const roles = [
   "Problem Solver",
 ];
 
+// 🧠 Different live code lines
+const liveCodes = [
+  `function greet() {
+  console.log("Hello, I'm Vijay!");
+}`,
+  `const skills = ["Java", "React", "Spring Boot", "SQL"];
+skills.map(skill => console.log("Learning:", skill));`,
+  `async function build(project) {
+  await code();
+  deploy(project);
+  console.log("Project Deployed 🚀");
+}`,
+  `const motivation = () => {
+  while(true) keepCoding("💻");
+};`,
+  `if(debug) {
+  fixBugs();
+} else {
+  optimizePerformance();
+}`,
+  `let dream = "FAANG Engineer";
+setTimeout(() => console.log("Goal →", dream), 2025);`,
+  `try {
+  innovate();
+} catch(error) {
+  console.log("Learning from", error);
+}`,
+  `function success() {
+  return hardWork() + passion() + consistency();
+}`,
+];
+
 const Hero: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
 
-  // Typing animation logic
+  const [codeTexts, setCodeTexts] = useState(Array(liveCodes.length).fill(""));
+
+  // 🎯 Typing effect for role text
   useEffect(() => {
     if (subIndex === roles[index].length + 1 && !reverse) {
       setTimeout(() => setReverse(true), 1800);
@@ -32,15 +65,30 @@ const Hero: React.FC = () => {
     return () => clearTimeout(t);
   }, [subIndex, index, reverse]);
 
-  // 🎯 Very slight parallax
+  // 💻 Live Coding Simulation: multiple snippets typing asynchronously
   useEffect(() => {
-    const move = (e: MouseEvent) => {
-      const x = (window.innerWidth / 2 - e.clientX) / 60; // very soft motion
-      const y = (window.innerHeight / 2 - e.clientY) / 60;
-      setOffset({ x, y });
-    };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
+    liveCodes.forEach((code, i) => {
+      let idx = 0;
+      const randomDelay = 30 + Math.random() * 40; // varied typing speed
+      const interval = setInterval(() => {
+        setCodeTexts((prev) => {
+          const updated = [...prev];
+          updated[i] = code.slice(0, idx++);
+          return updated;
+        });
+        if (idx > code.length) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setCodeTexts((prev) => {
+              const reset = [...prev];
+              reset[i] = "";
+              return reset;
+            });
+          }, 3000);
+        }
+      }, randomDelay);
+      return () => clearInterval(interval);
+    });
   }, []);
 
   return (
@@ -51,68 +99,103 @@ const Hero: React.FC = () => {
         backgroundImage: "url('/background.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        transform: `translate(${offset.x / 3}px, ${offset.y / 3}px)`,
-        transition: "transform 0.3s ease-out",
       }}
     >
       <style>
-        {`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@800&display=swap');
+{`
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@800&family=Source+Code+Pro:wght@400;600&display=swap');
 
-        .modern-font {
-          font-family: 'Poppins','Montserrat',sans-serif;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: #fff;
-          /* 🩶 Porcelain 3D look */
-          text-shadow:
-            0 1px 0 #f8f8f8,
-            0 2px 1px rgba(0,0,0,0.05),
-            0 4px 2px rgba(0,0,0,0.04),
-            0 8px 4px rgba(0,0,0,0.03),
-            0 16px 8px rgba(0,0,0,0.02);
-          transition: transform 0.25s ease, text-shadow 0.25s ease;
-        }
+/* 🌸 Live Coding Blocks (loop + soft opacity) */
+.live-code {
+  position: absolute;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 15px;
+  color: #ff2f8a;
+  white-space: pre;
+  line-height: 1.6;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.2; /* 👈 softer visibility (20 %) */
+  text-shadow:
+    0 0 6px rgba(255, 64, 150, 0.4),
+    0 0 14px rgba(255, 64, 150, 0.3);
+  animation: floatLoop 12s linear infinite; /* 👈 continuous looping */
+}
 
-        .modern-font:hover {
-          transform: scale(1.02);
-          text-shadow:
-            0 1px 0 #ffffff,
-            0 2px 1px rgba(255,255,255,0.4),
-            0 6px 4px rgba(220,220,255,0.2),
-            0 10px 6px rgba(180,180,255,0.15);
-        }
-        `}
-      </style>
+/* endless gentle float motion */
+@keyframes floatLoop {
+  0%   { transform: translateY(0)   rotate(-2deg); }
+  25%  { transform: translateY(-10px) rotate(2deg); }
+  50%  { transform: translateY(0)   rotate(-2deg); }
+  75%  { transform: translateY(10px)  rotate(1deg); }
+  100% { transform: translateY(0)   rotate(-2deg); }
+}
 
-      {/* Content */}
-      <div
-        className="max-w-4xl z-10 transition-transform duration-300 ease-out"
-        style={{
-          transform: `translate(${offset.x * 0.4}px, ${offset.y * 0.4}px)`, // slight parallax depth
-        }}
-      >
-        <h1 className="text-3xl md:text-4xl text-gray-300 mb-2 animate-fade-in-down">
+/* 🩶 Porcelain 3D Text (unchanged) */
+.modern-font {
+  font-family: 'Poppins','Montserrat',sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 1px 0 #f8f8f8,
+    0 2px 1px rgba(0,0,0,0.05),
+    0 4px 2px rgba(0,0,0,0.04),
+    0 8px 4px rgba(0,0,0,0.03),
+    0 16px 8px rgba(0,0,0,0.02);
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+}
+.modern-font:hover {
+  transform: scale(1.03);
+  text-shadow:
+    0 1px 0 #ffffff,
+    0 2px 1px rgba(255,255,255,0.4),
+    0 6px 4px rgba(220,220,255,0.2),
+    0 10px 6px rgba(180,180,255,0.15);
+}
+`}
+</style>
+
+      {/* 🧠 Multiple Live Code Blocks */}
+      {codeTexts.map((txt, i) => (
+        <div
+          key={i}
+          className="live-code"
+          style={{
+            top: `${10 + (i * 10) % 80}%`,
+            left: i % 2 === 0 ? `${5 + i * 7}%` : "auto",
+            right: i % 2 !== 0 ? `${5 + (i * 7) % 20}%` : "auto",
+            transform: `rotate(${i % 2 === 0 ? -3 : 3}deg)`,
+          }}
+        >
+          {txt}
+          <span className="text-[#fff] animate-pulse">|</span>
+        </div>
+      ))}
+
+      {/* 🌟 Center Content */}
+      <div className="max-w-4xl z-10 backdrop-blur-[1px]">
+        <h1 className="text-3xl md:text-4xl text-gray-200 mb-2 animate-fade-in-down">
           Hi, I'm
         </h1>
 
-        {/* 🩶 Porcelain 3D Text */}
+        {/* 🩶 Porcelain 3D Name */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 modern-font">
           VIJAYASANKAR
         </h1>
 
-        <h2 className="text-2xl md:text-3xl font-semibold text-[#e13b78] mb-8 animate-fade-in-up">
+        <h2 className="text-2xl md:text-3xl font-semibold text-[#ff2f8a] mb-8 animate-fade-in-up">
           {roles[index].substring(0, subIndex)}
           <span className="animate-pulse">|</span>
         </h2>
 
-        {/* Social Icons */}
+        {/* 🔗 Social Icons */}
         <div className="flex justify-center space-x-6 animate-fade-in">
           <a
             href="https://github.com/vijayasankar22"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125"
+            className="text-gray-400 hover:text-[#ff2f8a] transition-transform duration-300 hover:scale-125"
           >
             <GithubIcon />
           </a>
@@ -120,24 +203,24 @@ const Hero: React.FC = () => {
             href="https://linkedin.com/in/vijayasankarp"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125"
+            className="text-gray-400 hover:text-[#ff2f8a] transition-transform duration-300 hover:scale-125"
           >
             <LinkedinIcon />
           </a>
           <a
             href="mailto:vijayasankar2225@gmail.com"
-            className="text-gray-400 hover:text-[#d6044a] transition-transform duration-300 hover:scale-125"
+            className="text-gray-400 hover:text-[#ff2f8a] transition-transform duration-300 hover:scale-125"
           >
             <MailIcon />
           </a>
         </div>
       </div>
 
-      {/* Scroll Arrow */}
+      {/* ⬇️ Scroll Arrow */}
       <a href="#about" className="absolute bottom-10 animate-bounce z-10">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8 text-[#e13b78]"
+          className="h-8 w-8 text-[#ff2f8a]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
