@@ -8,7 +8,6 @@ const roles = [
   "Problem Solver",
 ];
 
-// 🧠 Different live code lines
 const liveCodes = [
   `function greet() {
   console.log("Hello, I'm Vijay!");
@@ -44,10 +43,9 @@ const Hero: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-
   const [codeTexts, setCodeTexts] = useState(Array(liveCodes.length).fill(""));
 
-  // 🎯 Typing effect for role text
+  // Typing effect for role text
   useEffect(() => {
     if (subIndex === roles[index].length + 1 && !reverse) {
       setTimeout(() => setReverse(true), 1800);
@@ -65,11 +63,11 @@ const Hero: React.FC = () => {
     return () => clearTimeout(t);
   }, [subIndex, index, reverse]);
 
-  // 💻 Live Coding Simulation: multiple snippets typing asynchronously
+  // Live coding simulation
   useEffect(() => {
     liveCodes.forEach((code, i) => {
       let idx = 0;
-      const randomDelay = 30 + Math.random() * 40; // varied typing speed
+      const randomDelay = 30 + Math.random() * 40;
       const interval = setInterval(() => {
         setCodeTexts((prev) => {
           const updated = [...prev];
@@ -102,10 +100,10 @@ const Hero: React.FC = () => {
       }}
     >
       <style>
-{`
+        {`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@800&family=Source+Code+Pro:wght@400;600&display=swap');
 
-/* 🌸 Live Coding Blocks (loop + soft opacity) */
+/* 💻 Floating Code - 10% opacity */
 .live-code {
   position: absolute;
   font-family: 'Source Code Pro', monospace;
@@ -115,26 +113,25 @@ const Hero: React.FC = () => {
   line-height: 1.6;
   user-select: none;
   pointer-events: none;
-  opacity: 0.2; /* 👈 softer visibility (20 %) */
+  opacity: 0.1; /* 👈 reduced to 10% */
   text-shadow:
-    0 0 6px rgba(255, 64, 150, 0.4),
-    0 0 14px rgba(255, 64, 150, 0.3);
-  animation: floatLoop 12s linear infinite; /* 👈 continuous looping */
+    0 0 4px rgba(255, 64, 150, 0.2),
+    0 0 10px rgba(255, 64, 150, 0.15);
+  animation: floatLoop 14s ease-in-out infinite;
 }
 
-/* endless gentle float motion */
 @keyframes floatLoop {
-  0%   { transform: translateY(0)   rotate(-2deg); }
+  0%   { transform: translateY(0px) rotate(-2deg); }
   25%  { transform: translateY(-10px) rotate(2deg); }
-  50%  { transform: translateY(0)   rotate(-2deg); }
-  75%  { transform: translateY(10px)  rotate(1deg); }
-  100% { transform: translateY(0)   rotate(-2deg); }
+  50%  { transform: translateY(0px) rotate(-1deg); }
+  75%  { transform: translateY(8px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(-2deg); }
 }
 
-/* 🩶 Porcelain 3D Text (unchanged) */
+/* 🩶 Porcelain 3D Name - adjusted letter spacing */
 .modern-font {
   font-family: 'Poppins','Montserrat',sans-serif;
-  letter-spacing: 2px;
+  letter-spacing: 1px; /* 👈 tighter spacing */
   text-transform: uppercase;
   color: #fff;
   text-shadow:
@@ -145,6 +142,7 @@ const Hero: React.FC = () => {
     0 16px 8px rgba(0,0,0,0.02);
   transition: transform 0.25s ease, text-shadow 0.25s ease;
 }
+
 .modern-font:hover {
   transform: scale(1.03);
   text-shadow:
@@ -154,7 +152,7 @@ const Hero: React.FC = () => {
     0 10px 6px rgba(180,180,255,0.15);
 }
 `}
-</style>
+      </style>
 
       {/* 🧠 Multiple Live Code Blocks */}
       {codeTexts.map((txt, i) => (
@@ -173,7 +171,7 @@ const Hero: React.FC = () => {
         </div>
       ))}
 
-      {/* 🌟 Center Content */}
+      {/* 🌟 Foreground Content */}
       <div className="max-w-4xl z-10 backdrop-blur-[1px]">
         <h1 className="text-3xl md:text-4xl text-gray-200 mb-2 animate-fade-in-down">
           Hi, I'm
@@ -189,7 +187,7 @@ const Hero: React.FC = () => {
           <span className="animate-pulse">|</span>
         </h2>
 
-        {/* 🔗 Social Icons */}
+        {/* 🔗 Social Links */}
         <div className="flex justify-center space-x-6 animate-fade-in">
           <a
             href="https://github.com/vijayasankar22"
