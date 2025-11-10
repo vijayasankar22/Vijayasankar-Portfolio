@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
         {`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@800&family=Source+Code+Pro:wght@400;600&display=swap');
 
-/* 💻 Floating Code - 10% opacity */
+/* 💻 Floating Code */
 .live-code {
   position: absolute;
   font-family: 'Source Code Pro', monospace;
@@ -134,6 +134,9 @@ const Hero: React.FC = () => {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
+  white-space: nowrap; /* 👈 prevents wrapping */
+  overflow: hidden; /* 👈 hides overflow on mobile */
+  text-overflow: ellipsis;
   text-shadow:
     0 1px 0 #f8f8f8,
     0 2px 1px rgba(0,0,0,0.05),
@@ -154,7 +157,7 @@ const Hero: React.FC = () => {
 `}
       </style>
 
-      {/* 🧠 Multiple Live Code Blocks */}
+      {/* 🧠 Floating Code */}
       {codeTexts.map((txt, i) => (
         <div
           key={i}
@@ -177,12 +180,12 @@ const Hero: React.FC = () => {
           Hi, I'm
         </h1>
 
-        {/* 🩶 Porcelain 3D Name - Responsive */}
+        {/* 🩶 Name - single line, responsive */}
         <h1
           className="font-extrabold mb-6 modern-font leading-tight text-white"
           style={{
-            fontSize: "clamp(2rem, 8vw, 6rem)",
-            wordBreak: "break-word",
+            fontSize: "clamp(1.8rem, 9vw, 6rem)", // scales with screen width
+            transform: "scale(0.9)", // ensures it fits on small screens
           }}
         >
           VIJAYASANKAR
