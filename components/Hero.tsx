@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8"
       style={{
         backgroundImage: "url('/background.jpg')",
         backgroundSize: "cover",
@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
   line-height: 1.6;
   user-select: none;
   pointer-events: none;
-  opacity: 0.1; /* 👈 reduced to 10% */
+  opacity: 0.1;
   text-shadow:
     0 0 4px rgba(255, 64, 150, 0.2),
     0 0 10px rgba(255, 64, 150, 0.15);
@@ -128,10 +128,10 @@ const Hero: React.FC = () => {
   100% { transform: translateY(0px) rotate(-2deg); }
 }
 
-/* 🩶 Porcelain 3D Name - adjusted letter spacing */
+/* 🩶 Porcelain 3D Name */
 .modern-font {
   font-family: 'Poppins','Montserrat',sans-serif;
-  letter-spacing: 1px; /* 👈 tighter spacing */
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
   text-shadow:
@@ -172,13 +172,19 @@ const Hero: React.FC = () => {
       ))}
 
       {/* 🌟 Foreground Content */}
-      <div className="max-w-4xl z-10 backdrop-blur-[1px]">
+      <div className="max-w-4xl z-10 backdrop-blur-[1px] px-4 sm:px-0">
         <h1 className="text-3xl md:text-4xl text-gray-200 mb-2 animate-fade-in-down">
           Hi, I'm
         </h1>
 
-        {/* 🩶 Porcelain 3D Name */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 modern-font">
+        {/* 🩶 Porcelain 3D Name - Responsive */}
+        <h1
+          className="font-extrabold mb-6 modern-font leading-tight text-white"
+          style={{
+            fontSize: "clamp(2rem, 8vw, 6rem)",
+            wordBreak: "break-word",
+          }}
+        >
           VIJAYASANKAR
         </h1>
 
