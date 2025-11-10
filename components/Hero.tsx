@@ -149,7 +149,7 @@ const Hero: React.FC = () => {
 .modern-font:hover {
   transform: scale(1.03);
   text-shadow:
-    0 1px 0 #ffffff,
+    0 1px 0 #ffffff,  
     0 2px 1px rgba(255,255,255,0.4),
     0 6px 4px rgba(220,220,255,0.2),
     0 10px 6px rgba(180,180,255,0.15);
