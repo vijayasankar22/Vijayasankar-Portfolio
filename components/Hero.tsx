@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden px-4 sm:px-8"
+      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden px-2 sm:px-8"
       style={{
         backgroundImage: "url('/background.jpg')",
         backgroundSize: "cover",
@@ -134,8 +134,8 @@ const Hero: React.FC = () => {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
-  white-space: nowrap; /* 👈 prevents wrapping */
-  overflow: hidden; /* 👈 hides overflow on mobile */
+  white-space: nowrap; /* single line */
+  overflow: hidden;
   text-overflow: ellipsis;
   text-shadow:
     0 1px 0 #f8f8f8,
@@ -149,7 +149,7 @@ const Hero: React.FC = () => {
 .modern-font:hover {
   transform: scale(1.03);
   text-shadow:
-    0 1px 0 #ffffff,  
+    0 1px 0 #ffffff,
     0 2px 1px rgba(255,255,255,0.4),
     0 6px 4px rgba(220,220,255,0.2),
     0 10px 6px rgba(180,180,255,0.15);
@@ -157,7 +157,7 @@ const Hero: React.FC = () => {
 `}
       </style>
 
-      {/* 🧠 Floating Code */}
+      {/* 🧠 Floating Code Background */}
       {codeTexts.map((txt, i) => (
         <div
           key={i}
@@ -175,17 +175,20 @@ const Hero: React.FC = () => {
       ))}
 
       {/* 🌟 Foreground Content */}
-      <div className="max-w-4xl z-10 backdrop-blur-[1px] px-4 sm:px-0">
+      <div className="w-full z-10 backdrop-blur-[1px] px-2 sm:px-0">
         <h1 className="text-3xl md:text-4xl text-gray-200 mb-2 animate-fade-in-down">
           Hi, I'm
         </h1>
 
-        {/* 🩶 Name - single line, responsive */}
+        {/* 🩶 Name - single line, full width */}
         <h1
-          className="font-extrabold mb-6 modern-font leading-tight text-white"
+          className="font-extrabold mb-6 modern-font leading-tight text-white mx-auto"
           style={{
-            fontSize: "clamp(1.8rem, 9vw, 6rem)", // scales with screen width
-            transform: "scale(0.9)", // ensures it fits on small screens
+            fontSize: "clamp(2.4rem, 13vw, 6rem)", // large and responsive
+            width: "100%",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textAlign: "center",
           }}
         >
           VIJAYASANKAR
