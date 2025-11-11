@@ -10,8 +10,6 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-
-
 // ✨ Animations
 const styles = `
 @keyframes pulseGlow {
@@ -139,7 +137,7 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* ⚡ Left Lens Flare — Half Visible */}
+      {/* ⚡ Left Lens Flare */}
       <div
         className="pointer-events-none fixed top-0 h-full z-0"
         style={{
@@ -153,7 +151,7 @@ const App: React.FC = () => {
         }}
       />
 
-      {/* ⚡ Right Lens Flare — Half Visible */}
+      {/* ⚡ Right Lens Flare */}
       <div
         className="pointer-events-none fixed top-0 h-full z-0"
         style={{
@@ -168,18 +166,21 @@ const App: React.FC = () => {
       />
 
       {/* 🧠 Main Content */}
-      <div className="relative z-10 p-8">
+      <div className="relative z-10 px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 py-4 sm:py-6 md:py-8">
         <Header />
-        <main className="container mx-auto px-6 md:px-12">
-          <section className="-mt-12 md:-mt-20 lg:-mt-34 transition-all duration-500">
+        <main className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 transition-all duration-500">
+          <section className="-mt-8 sm:-mt-12 md:-mt-16 lg:-mt-20 transition-all duration-500">
             <Hero />
           </section>
 
-          <About />
-          <Skills />
-          <Projects />
-          <Education />
-          <Contact />
+          {/* Reduced padding for smaller devices */}
+          <div className="space-y-16 sm:space-y-20 md:space-y-24">
+            <About />
+            <Skills />
+            <Projects />
+            <Education />
+            <Contact />
+          </div>
         </main>
         <Footer />
       </div>
